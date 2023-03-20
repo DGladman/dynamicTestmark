@@ -1,7 +1,7 @@
 <?php require_once("connection.php");
 require("commonHead.php") ?>
 
-<title>Testmark: Temperature Sensors and Instruments</title>
+<title>Testmark: Page Not Found</title>
 </head>
 
 <?php require("commonNav.php") ?>
