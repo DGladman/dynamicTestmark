@@ -15,10 +15,13 @@ foreach ($result as $row) {
 }
 
 echo '<li class="nav-item">
-<a href="Testmark-about.html" class="nav-link" id="NavL5">About Us</a>
+<a href="Testmark-about.php" class="nav-link" id="NavL5">About Us</a>
 </li>
 <li class="nav-item">
-<a href="Testmark-technical.html" class="nav-link" id="NavL6">Technical Information</a>
+<a href="Testmark-technical.php" class="nav-link" id="NavL6">Technical Information</a>
+</li>
+<li class="nav-item">
+<a href="testmark-admin.php" class="nav-link" id="NavL6">Admin</a>
 </li>
 </ul>
 </nav>';

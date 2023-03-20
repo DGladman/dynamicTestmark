@@ -28,4 +28,4 @@ echo '<!DOCTYPE html>
         gtag("config", "UA-152384881-1");
     </script>
     <!-- Google Analytics End-->';
-    ?>
+?>
