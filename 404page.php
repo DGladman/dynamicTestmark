@@ -6,8 +6,14 @@ require("commonHead.php") ?>
 
 <?php require("commonNav.php") ?>
 
-<h1>404</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12" id="c17">
+            <h1>404: Page Not Found</h1>
+            <p>Sorry, the page you requested could not be found or doex not exist.</p>
+        </div>
+    </div>
 
-</body>
+    </body>
 
-</html>
+    </html>
