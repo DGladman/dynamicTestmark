@@ -13,13 +13,13 @@ include("commonHead.php");
         <div class="col-md-4 col-sm-6 col-xs-12" id="c1">
             <h1 id="logo">Testmark Ltd</h1>
         </div>
-        <div class="col-md-8 col-sm-6  col-xs-12" id="c2">
+        <div class="col-md-8 col-sm-6 col-xs-12" id="c2">
             <p>
                 Welcome to the Admin Page
             <p>
         </div>
     </div>
-
+</div>
     </body>
 
     </html>

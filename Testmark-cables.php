@@ -61,7 +61,7 @@ foreach ($result as $row) {
             $image = $row['image'];
             $cardText = $row['card_text'];
 
-            echo '<div class="col-md-4 col-sm-6 col-xs-12 cardDiv" >
+            echo '<div class="col-md-4 col-sm-6 col-xs-12 d-flex align-items-stretch cardDiv" >
         <div class="card">
             <a href="testmark-product.php?id=' . $id . '">
                 <img class="card-img-top productImage" src="image/' . $image . '" alt="Product Image">
