@@ -1,8 +1,12 @@
 <?php
 include_once("connection.php");
 include("commonHead.php");
-$idPage = $_GET["id"];
+if (isset($_GET["id"])) {
+    $idPage = $_GET["id"];
+} else {
+}
 $querry = "SELECT * FROM product WHERE id =" . $idPage;
+echo $querry;
 $result = $db->query($querry);
 foreach ($result as $row) {
     $name = $row['name'];
@@ -70,6 +74,42 @@ foreach ($result as $row) {
             ?>
         </div>
     </div>
-    </body>
+    <div class="row">
+        <div class="col-12" id="c11">
+            <H2>Submit an Inquiry</H2>
+        </div>
+    </div>
 
-    </html>
+    <form class="row" action="inquiryProcess.php" method="POST">
+        <div class="col-md-6 col-sm-12 col-xs-12" id="f1">
+            <Label for="FirstName" class="form-label"> First Name</Label>
+            <input type="text" class="form-control" id="FirstName" name="first_name" required>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12" id="f2">
+            <Label for="LastName" class="form-label"> Last Name</Label>
+            <input type="text" class="form-control" id="LastName" name="last_name" required>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12" id="f3">
+            <Label for="Organisation" class="form-label"> Organisation</Label>
+            <input type="text" class="form-control" id="Organisation" name="organisation" required>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12" id="f4">
+            <Label for="Email" class="form-label"> Email Address</Label>
+            <input type="email" class="form-control" id="Email" name="email" required>
+        </div>
+
+        <div class="col-12" id="f5">
+            <Label for="Inquiry" class="form-label"> Inquiry</Label>
+            <textarea class="form-control" id="Inquiry" name="inquiry" rows="3"></textarea>
+        </div>
+        <div class="col-12" id="f6">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
