@@ -53,13 +53,6 @@ INSERT INTO `product` (`id`, `name`, `image`, `card_text`, `category_id`) VALUES
 (2, 'Ribbon Electric Cables', 'idcCableCard.jpg', 'Ribbon Electric Cables offers a wide range of high-quality electrical cables that are designed for maximum performance and durability. Our cables are manufactured using the latest technology and are made from premium materials to ensure reliability and safety. We have a solution for you.', 3);
 
 --
--- Dumping data for table `product_section`
---
-
-INSERT INTO `product_section` (`product_id`, `section_id`) VALUES
-(1, 1);
-
---
 -- Dumping data for table `section`
 --
 

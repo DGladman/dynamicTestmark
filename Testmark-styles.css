@@ -137,7 +137,9 @@ h2 {
 #f5,
 #c13,
 #c14,
-#c16 {
+#c16,
+.bg
+ {
     background-color: #22b2b2;
 }
 
