@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 12:24 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Mar 27, 2023 at 04:06 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,11 +53,21 @@ INSERT INTO `product` (`id`, `name`, `image`, `card_text`, `category_id`) VALUES
 (2, 'Ribbon Electric Cables', 'idcCableCard.jpg', 'Ribbon Electric Cables offers a wide range of high-quality electrical cables that are designed for maximum performance and durability. Our cables are manufactured using the latest technology and are made from premium materials to ensure reliability and safety. We have a solution for you.', 3);
 
 --
+-- Dumping data for table `product_section`
+--
+
+INSERT INTO `product_section` (`product_id`, `section_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 2);
+
+--
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`id`, `name`, `body`) VALUES
-(1, 'Benefits of Bakelite', 'Bakelite is a thermosetting plastic that has been used for decades as an excellent insulator for cables. This material is ideal for cable insulation because it is highly resistant to heat and electricity, which are two of the main factors that can cause cables to fail.\r\n\r\nBakelite is a non-conductive material, meaning that it does not conduct electricity. This property makes it ideal for insulating cables, as it prevents any unwanted electricity from escaping and causing damage or injury. Additionally, Bakelite has a high dielectric strength, which means that it can withstand high voltage levels without breaking down or becoming damaged.');
+(1, 'Benefits of Bakelite', 'Bakelite is a thermosetting plastic that has been used for decades as an excellent insulator for cables. This material is ideal for cable insulation because it is highly resistant to heat and electricity, which are two of the main factors that can cause cables to fail.\r\n\r\nBakelite is a non-conductive material, meaning that it does not conduct electricity. This property makes it ideal for insulating cables, as it prevents any unwanted electricity from escaping and causing damage or injury. Additionally, Bakelite has a high dielectric strength, which means that it can withstand high voltage levels without breaking down or becoming damaged.'),
+(2, 'Thermal Properties', 'Thermal Conductivity: 0.043 W/mK\r\nHeat Capacity: 2.5 J/gK\r\nThermal Resistance: 0.23 K/W\r\nMaximum Operating Temperature: 90°C\r\nMinimum Installation Temperature: -10°C\r\nThermal Expansion Coefficient: 18.5 x 10^-6/K');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
