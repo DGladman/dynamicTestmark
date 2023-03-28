@@ -6,12 +6,19 @@ if (isset($_GET["id"])) {
 } else {
 }
 $querry = "SELECT * FROM product WHERE id =" . $idPage;
-echo $querry;
 $result = $db->query($querry);
+$count = $result->rowCount();
+if ($count == 0) {
+    header("Location: 404page.php");
+}
 foreach ($result as $row) {
     $name = $row['name'];
+    if (!$name) {
+        header("Location: 404page.php");
+    }
     echo '<title>Testmark: ' . ucfirst($name) . '</title>';
 }
+
 ?>
 <title>Testmark: Product</title>
 </head>
@@ -80,7 +87,7 @@ foreach ($result as $row) {
         </div>
     </div>
 
-    <form class="row" action="inquiryProcess.php" method="POST">
+    <form class="row" action="inquiryProcess.php?id= " method="POST">
         <div class="col-md-6 col-sm-12 col-xs-12" id="f1">
             <Label for="FirstName" class="form-label"> First Name</Label>
             <input type="text" class="form-control" id="FirstName" name="first_name" required>

@@ -74,31 +74,16 @@ require("commonHead.php") ?>
 
             <h2>Product News</h2>
 
-            <a href="Testmark-idc.html">
-                <H3>IDC Cables:</H3>
-            </a>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo natus culpa dicta hic illo libero!
-                Similique, perspiciatis earum officia ipsum natus consequatur a? Odit officiis ad eos non labore
-                porro facilis maxime at laudantium ex sit dolor veniam blanditiis hic dignissimos explicabo officia,
-                aut natus distinctio! Similique sapiente ratione voluptate!</p>
-
-            <a href="#">
-                <H3>Product:</H3>
-            </a>
-
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo natus culpa dicta hic illo libero!
-                Similique, perspiciatis earum officia ipsum natus consequatur a? Odit officiis ad eos non labore
-                porro facilis maxime at laudantium ex sit dolor veniam blanditiis hic dignissimos explicabo officia,
-                aut natus distinctio! Similique sapiente ratione voluptate!</p>
-
-            <a href="#">
-                <H3>Product:</H3>
-            </a>
-
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo natus culpa dicta hic illo libero!
-                Similique, perspiciatis earum officia ipsum natus consequatur a? Odit officiis ad eos non labore
-                porro facilis maxime at laudantium ex sit dolor veniam blanditiis hic dignissimos explicabo officia,
-                aut natus distinctio! Similique sapiente ratione voluptate!</p>
+            <?php
+            $querry = "SELECT * FROM news ORDER BY id DESC LIMIT 3";
+            $result = $db->query($querry);
+            foreach ($result as $row) {
+                echo "<a href='testmark-product.php?id=" . $row['product_id'] . "'>";
+                echo "<h3>" . $row['name'] . "</h3>";
+                echo "</a>";
+                echo "<p>" . $row['body'] . "</p>";
+            }
+            ?>
 
         </div>
 
