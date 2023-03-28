@@ -60,20 +60,23 @@ foreach ($result as $row) {
             $name = $row['name'];
             $image = $row['image'];
             $cardText = $row['card_text'];
+            $active = $row['active'];
 
-            echo '<div class="col-md-4 col-sm-6 col-xs-12 d-flex align-items-stretch cardDiv" >
-        <div class="card">
-            <a href="testmark-product.php?id=' . $id . '">
-                <img class="card-img-top productImage" src="image/' . $image . '" alt="Product Image">
-            </a>
-            <div class="card-body">
-                <a href="testmark-product.php?id=' . $id . '">
-                    <h4 class="card-body">' . $name . '</h4>
-                </a>
-                <p class="card-text">' . $cardText . '</p>
-            </div>
-        </div>
-    </div>';
+            if ($active == 1) {
+                echo '<div class="col-md-4 col-sm-6 col-xs-12 d-flex align-items-stretch cardDiv" >
+                        <div class="card">
+                            <a href="testmark-product.php?id=' . $id . '">
+                                <img class="card-img-top productImage" src="image/' . $image . '" alt="Product Image">
+                            </a>
+                            <div class="card-body">
+                                <a href="testmark-product.php?id=' . $id . '">
+                                    <h4 class="card-body">' . $name . '</h4>
+                                </a>
+                                    <p class="card-text">' . $cardText . '</p>
+                            </div>
+                        </div>
+                    </div>';
+            }
 
         }
         ?>

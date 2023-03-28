@@ -5,19 +5,18 @@ if (isset($_GET["id"])) {
     $idPage = $_GET["id"];
 } else {
 }
-$querry = "SELECT * FROM product WHERE id =" . $idPage;
-$result = $db->query($querry);
-$count = $result->rowCount();
+$query = "SELECT * FROM product WHERE id = ?";
+$stmt = $db->prepare($query);
+$stmt->execute([$idPage]);
+$result = $stmt->fetch();
+$count = $stmt->rowCount();
+
 if ($count == 0) {
     header("Location: 404page.php");
 }
-foreach ($result as $row) {
-    $name = $row['name'];
-    if (!$name) {
-        header("Location: 404page.php");
-    }
-    echo '<title>Testmark: ' . ucfirst($name) . '</title>';
-}
+
+$name = $result['name'];
+echo '<title>Testmark: ' . ucfirst($name) . '</title>';
 
 ?>
 <title>Testmark: Product</title>

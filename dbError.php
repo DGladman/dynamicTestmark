@@ -10,7 +10,7 @@ require("commonHead.php") ?>
     <div class="row">
         <div class="col-12" id="c17">
             <h1>Error in Delivering Content</h1>
-            <p>Sorry, the content you wished to acess can't be displaced. Please try again later.</p>
+            <p>Sorry, the content you wished to access can't be displaced. Please try again later.</p>
         </div>
     </div>
 </div>
