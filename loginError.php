@@ -1,7 +1,7 @@
 <?php require_once("connection.php");
 require("commonHead.php") ?>
 
-<title>Testmark: Content Error</title>
+<title>Testmark: Login Error</title>
 </head>
 
 <?php require("commonNav.php") ?>
@@ -9,8 +9,8 @@ require("commonHead.php") ?>
 <div class="container">
     <div class="row">
         <div class="col-12" id="c17">
-            <h1>Error in Delivering Content</h1>
-            <p>Sorry, the content you wished to access can't be displaced or does not exist.</p>
+            <h1>Account not Found</h1>
+            <p>Sorry, we can't find an account with those details.</p>
         </div>
     </div>
 </div>
