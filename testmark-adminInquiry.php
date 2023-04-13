@@ -87,22 +87,36 @@ include("commonHead.php");
                 $(document).ready(function() {
                     $("#mainTable").DataTable({
                         responsive: true,
-                        paging: false
+                        paging: false,
                     });
 
-                    // Add confirmation window for delete button
-                    $(".delete-form").submit(function(e) {
-                        e.preventDefault(); // Prevent form submission
+                    // Convert timestamp to UK date format
+                    $("#mainTable tbody tr").each(function() {
+                        var timestamp = $(this).find("td:eq(5)").text();
+                        var date = new Date(timestamp);
+                        var options = {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        };
+                        var ukDate = date.toLocaleString('en-GB', options);
+                        $(this).find("td:eq(5)").text(ukDate);
+                    });
 
-                        // Show confirmation window
-                        var confirmDelete = confirm("Are you sure you want to delete this inquiry?");
+                    $(".delete-form").submit(function(e) {
+                        e.preventDefault();
+
+                        var confirmDelete = confirm(
+                            "Are you sure you want to delete this inquiry?");
                         if (confirmDelete) {
-                            // If confirmed, submit the form
                             $(this).off("submit").submit();
                         }
                     });
                 });
                 </script>
+
             </table>
 
 
