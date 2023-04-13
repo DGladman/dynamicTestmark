@@ -38,7 +38,7 @@ include("commonHead.php");
     </div>
     <div class="row">
         <div class="col-12" id="c12">
-            <table class="table table-striped">
+            <table class="table table-striped" id="mainTable">
                 <thead>
                     <tr>
                         <th scope="col">First Name</th>
@@ -74,7 +74,7 @@ include("commonHead.php");
                 <td>' . $row['body'] . '</td>
                 <td>' . $row['timecreated'] . '</td>
                 <td>
-                    <form method="post" action="deleteInquiry.php">
+                    <form class="delete-form" method="post" action="deleteInquiry.php">
                         <input type="hidden" name="inquiry_id" value="' . $row['id'] . '">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
@@ -83,7 +83,28 @@ include("commonHead.php");
                     }
                     ?>
                 </tbody>
+                <script>
+                $(document).ready(function() {
+                    $("#mainTable").DataTable({
+                        responsive: true,
+                        paging: false
+                    });
+
+                    // Add confirmation window for delete button
+                    $(".delete-form").submit(function(e) {
+                        e.preventDefault(); // Prevent form submission
+
+                        // Show confirmation window
+                        var confirmDelete = confirm("Are you sure you want to delete this inquiry?");
+                        if (confirmDelete) {
+                            // If confirmed, submit the form
+                            $(this).off("submit").submit();
+                        }
+                    });
+                });
+                </script>
             </table>
+
 
         </div>
 

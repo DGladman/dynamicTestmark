@@ -15,6 +15,12 @@ echo '<!DOCTYPE html>
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Bootstrap End -->
 
+    <!-- jQuery Start -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/kt-2.6.4/r-2.2.9/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/kt-2.6.4/r-2.2.9/datatables.min.js"></script>
+    <!-- jQuery End -->
+
     <link rel="stylesheet" href="Testmark-styles.css">
 
     <!-- Google Analytics Start-->
