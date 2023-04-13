@@ -45,9 +45,12 @@ echo '<title>Testmark: ' . ucfirst($name) . '</title>';
     <div class="row">
         <div class="col-12 title">
             <?php
-            $querry = "SELECT * FROM product WHERE id =" . $idPage;
-            $result = $db->query($querry);
-            foreach ($result as $row) {
+            $query = "SELECT * FROM product WHERE id = :idPage";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':idPage', $idPage, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
                 $name = $row['name'];
                 echo '<h1 class="titleText">' . ucfirst($name) . '</h1>';
             }
@@ -57,9 +60,12 @@ echo '<title>Testmark: ' . ucfirst($name) . '</title>';
     <div class="row">
         <div class="col-12 bg">
             <?php
-            $querry = "SELECT * FROM product WHERE id =" . $idPage;
-            $result = $db->query($querry);
-            foreach ($result as $row) {
+            $query = "SELECT * FROM product WHERE id = :idPage";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':idPage', $idPage, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
                 $image = $row['image'];
             }
             echo '<img class="card-img-top" id="idcCable1"  src="image/' . $image . '" alt="Product Image">';
