@@ -33,7 +33,7 @@ include("commonHead.php");
     </div>
     <div class="row">
         <div class="col-12" id="c12">
-            <h1 id="About">Admin Panel</h1>
+            <h1 id="About">View/Edit Products</h1>
         </div>
     </div>
     <div class="row">
