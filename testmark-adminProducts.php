@@ -85,7 +85,15 @@ include("commonHead.php");
             </table>
 
         </div>
+    </div>
+    <div class="row">
+        <div class="col-3" id="c12">
+            <button class=" btn btn-primary"><a href="testmark-adminNewProduct.php" class="btn btn-primary">Add New
+                    Product</a></button>
+        </div>
+        <div class="col-9" id="c12"></div>
+    </div>
 
-        </body>
+    </body>
 
-        </html>
+    </html>
