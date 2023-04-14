@@ -8,12 +8,14 @@ if (isset($_POST['logout'])) {
     header("Location: index.php");
     exit;
 }
+
 include_once("connection.php");
 include("commonHead.php");
+
 ?>
-<title>Testmark: Admin Panel</title>
+<title>Testmark: New Section</title>
 </head>
-<?php include("commonNav.php") ?>
+<?php include("commonNav.php"); ?>
 
 <div class="container">
 
@@ -33,25 +35,27 @@ include("commonHead.php");
     </div>
     <div class="row">
         <div class="col-12" id="c12">
-            <h1 id="About">Admin Panel</h1>
+            <h1 id="About">Add New Section
+            </h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-4" id="c12">
-            <button type="button" class="btn btn-primary"
-                onclick="window.location.href='testmark-adminProducts.php'">View/Edit Products</button>
-        </div>
-        <div class="col-4" id="c12">
-            <button type="button" class="btn btn-primary"
-                onclick="window.location.href='testmark-adminNewSection.php'">Add New Section</button>
-        </div>
-        <div class="col-4" id="c12">
-            <button type="button" class="btn btn-primary"
-                onclick="window.location.href='testmark-adminInquiry.php'">View Inquiries</button>
+    <form class="row" action="adminNewSection.php" method="POST">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="f1">
+            <Label for="name" class="form-label"> Name</Label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
-    </div>
+        <div class="col-12" id="f5">
+            <Label for="body" class="form-label"> Body Text</Label>
+            <textarea class="form-control" id="body" name="body" rows="3" required></textarea>
+        </div>
+        <div class="col-12" id="f6">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
+    </form>
 
-    </body>
+</div>
 
-    </html>
+</body>
+
+</html>

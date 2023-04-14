@@ -42,17 +42,8 @@ $stmt = $db->prepare($query);
 $stmt->execute([$idPage]);
 $idSections = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// $sections = [];
-// foreach ($idSections as $idSection) {
-//     $query = "SELECT * FROM section WHERE id = ?";
-//     $stmt = $db->prepare($query);
-//     $stmt->execute([$idSection['section_id']]);
-//     $section = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//     $sections[] = $section;
-// }
-
 ?>
-<title>Testmark: AdminPanel</title>
+<title>Testmark: Admin Product</title>
 </head>
 <?php include("commonNav.php"); ?>
 
@@ -82,7 +73,8 @@ $idSections = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <form class="row" action="adminEditProduct.php" method="POST">
         <div class="col-md-6 col-sm-12 col-xs-12" id="f1">
             <Label for="name" class="form-label"> Name</Label>
-            <input type="text" class="form-control" id="name" name="name" <?php echo 'value="' . $name . '"' ?>equired>
+            <input type="text" class="form-control" id="name" name="name" <?php echo 'value="' . $name . '"' ?>
+                required>
         </div>
 
         <div class="col-md-6 col-sm-12 col-xs-12" id="f2">
@@ -140,12 +132,13 @@ $idSections = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-md-6 col-sm-12 col-xs-12" id="f3"> </div>
         <div class="col-12" id="f5">
             <Label for="cardText" class="form-label"> Card Text</Label>
-            <textarea class="form-control" id="cardText" name="cardText" required
+            <textarea class="form-control" id="cardText" name="cardText" maxlength="300" required
                 rows="3"><?php echo $cardText ?></textarea>
         </div>
         <div class="col-12" id="f6">
-            <button type="submit" class="btn btn-primary"> Edit</button>
+            <button type="submit" class="btn btn-primary"> Save Changes</button>
         </div>
+        <input type="hidden" name="id" value="<?php echo $idPage ?>">
     </form>
 
 </div>

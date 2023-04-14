@@ -11,7 +11,7 @@ if (isset($_POST['logout'])) {
 include_once("connection.php");
 include("commonHead.php");
 ?>
-<title>Testmark: AdminPanel</title>
+<title>Testmark: Inquiries</title>
 </head>
 <?php include("commonNav.php") ?>
 
