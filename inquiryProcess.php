@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$result) {
-        // Insert the organisation
         $query = "INSERT INTO organisation (name) VALUES (?)";
         $stmt = $db->prepare($query);
         $stmt->execute([$organisation]);
@@ -40,28 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $org_id = $result['id'];
     }
 
-    // echo $email_id;
-    // echo $org_id;
-
-    // $query = "SELECT * FROM email WHERE id = ?";
-    // $stmt = $db->prepare($query);
-    // $stmt->execute([$email_id]);
-    // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    // echo $result['id'];
-
-    // $query = "SELECT * FROM organisation WHERE id = ?";
-    // $stmt = $db->prepare($query);
-    // $stmt->execute([$org_id]);
-    // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    // echo $result['id'];
-
-    // Insert the inquiry
     $query = "INSERT INTO inquiry (first_name, last_name, body, email_id, organisation_id) VALUES (?, ?, ?, ?, ?)";
     $stmt = $db->prepare($query);
     $stmt->execute([$first_name, $last_name, $inquiry, $email_id, $org_id]);
     $inquiry_id = $db->lastInsertId();
 
-    // Insert the email-organisation relation
     $query = "INSERT INTO email_organisation (email_id, organisation_id) VALUES (?, ?)";
     $stmt = $db->prepare($query);
     $stmt->execute([$email_id, $org_id]);

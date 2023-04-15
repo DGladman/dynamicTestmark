@@ -8,7 +8,4 @@ catch (PDOException $e){
     header("dbError.php");
     exit();
 }
-
-
-//var_dump($db)
 ?>
