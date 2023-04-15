@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 12:20 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Apr 15, 2023 at 10:40 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `password` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `password`) VALUES
+(1, 'admin1', '$2y$10$iDhZY5tAxqHUe16nfQIgmu0o1o8R9oAhv49aAQhkQcB0YhN/GPuNq');
 
 -- --------------------------------------------------------
 
@@ -43,7 +50,7 @@ CREATE TABLE `associate` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `link` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `associate`
@@ -67,7 +74,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `body` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
@@ -89,7 +96,7 @@ INSERT INTO `category` (`id`, `name`, `body`) VALUES
 CREATE TABLE `email` (
   `id` int(11) NOT NULL,
   `address` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `email`
@@ -97,7 +104,8 @@ CREATE TABLE `email` (
 
 INSERT INTO `email` (`id`, `address`) VALUES
 (1, 'BTools@Letters.org'),
-(2, 'JTools@Letters.org');
+(2, 'JTools@Letters.org'),
+(12, 'SmithO@WebMail.com');
 
 -- --------------------------------------------------------
 
@@ -108,7 +116,7 @@ INSERT INTO `email` (`id`, `address`) VALUES
 CREATE TABLE `email_organisation` (
   `email_id` int(11) NOT NULL,
   `organisation_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `email_organisation`
@@ -116,7 +124,8 @@ CREATE TABLE `email_organisation` (
 
 INSERT INTO `email_organisation` (`email_id`, `organisation_id`) VALUES
 (1, 1),
-(2, 1);
+(2, 1),
+(12, 11);
 
 -- --------------------------------------------------------
 
@@ -132,7 +141,7 @@ CREATE TABLE `inquiry` (
   `email_id` int(11) NOT NULL,
   `body` text NOT NULL,
   `timecreated` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `inquiry`
@@ -140,7 +149,7 @@ CREATE TABLE `inquiry` (
 
 INSERT INTO `inquiry` (`id`, `first_name`, `last_name`, `organisation_id`, `email_id`, `body`, `timecreated`) VALUES
 (1, 'Bob', 'Smith', 1, 1, 'Can you send me more info about the thermal resistance of your cables?', '2023-03-28 07:50:09'),
-(2, 'Jeb', 'Bird', 1, 2, 'Can you send me more info about your Bakelite supplier?', '2023-03-28 08:00:28');
+(14, 'John', 'Smith', 11, 12, 'Hello, could you email me about your upcoming stock?', '2023-04-13 12:00:35');
 
 -- --------------------------------------------------------
 
@@ -153,7 +162,7 @@ CREATE TABLE `news` (
   `name` varchar(50) NOT NULL,
   `body` text NOT NULL,
   `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `news`
@@ -173,14 +182,15 @@ INSERT INTO `news` (`id`, `name`, `body`, `product_id`) VALUES
 CREATE TABLE `organisation` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `organisation`
 --
 
 INSERT INTO `organisation` (`id`, `name`) VALUES
-(1, 'Bob\'s Tools');
+(1, 'Bob\'s Tools'),
+(11, 'Smith\'s Own Tools');
 
 -- --------------------------------------------------------
 
@@ -195,7 +205,7 @@ CREATE TABLE `product` (
   `card_text` varchar(300) NOT NULL,
   `category_id` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
@@ -204,7 +214,22 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`id`, `name`, `image`, `card_text`, `category_id`, `active`) VALUES
 (1, 'Bakelite Insulated Cables', 'idcCableCard.jpg', 'Our Bakelite insulated cables are made specifically to add to and replace existing Bakelite insulated cabling for maximum legacy support.', 3, 1),
 (2, 'Ribbon Electric Cables', 'idcCableCard.jpg', 'Ribbon Electric Cables offers a wide range of high-quality electrical cables that are designed for maximum performance and durability. Our cables are manufactured using the latest technology and are made from premium materials to ensure reliability and safety. We have a solution for you.', 3, 1),
-(3, 'Bolted Thermal Sensors', 'boltedTS.jpg', 'Introducing Bolted Thermal Sensors, the innovative solution for accurately measuring temperature in a variety of industrial applications. These sensors are designed with precision in mind, featuring a bolted design that ensures a secure and stable installation.', 1, 1);
+(3, 'Bolted Thermal Sensors', 'boltedTS.jpg', 'Introducing Bolted Thermal Sensors, the innovative solution for accurately measuring temperature in a variety of industrial applications. These sensors are designed with precision in mind, featuring a bolted design that ensures a secure and stable installation.', 1, 1),
+(4, 'ChromeSense', 'boltedTS.jpg', 'The ChromeSense is a cutting-edge sensor that is designed to revolutionize the way you interact with your environment. This advanced sensor is engineered with the latest technology to provide accurate and reliable detection of various elements in the surrounding environment.', 1, 1),
+(5, ' FlexiWire', 'idcCableCard.jpg', 'FlexiWire is a state-of-the-art electric cable designed to provide superior performance in tight spaces. Engineered with cutting-edge technology and premium materials, FlexiWire is highly flexible and durable, making it ideal for installations where space is limited.', 3, 1),
+(6, 'NanoWave Transmitter', 'transmitter.jpg', 'The NanoWave Transmitter is an advanced wireless device that allows for seamless transmission of audio or video signals over long distances in a compact and lightweight form factor. Designed with professional users in mind.', 2, 1),
+(7, ' NanoWave Transmitter Pro', 'transmitter.jpg', 'The NanoWave Transmitter Pro is the premium variant of the NanoWave Transmitter, designed for professional users who require even higher performance and advanced features in their wireless signal transmission setup. Built with top-of-the-line components and advanced technologies.', 2, 1),
+(8, 'MicroLink Mini', 'transmitter.jpg', 'The MicroLink Transmitter Mini is compact and lightweight, designed for users who require a portable and easy-to-use wireless signal transmission solution. With its small form factor and simplicity of use, the MicroLink Transmitter Mini offers convenience. ', 2, 1),
+(9, 'PrecisionTemp DialPro', 'dial.jpg', 'The PrecisionTemp DialPro is a sleek and versatile temperature dial that provides precise control over temperature settings for a wide range of applications. Whether you\'re adjusting the temperature on a heater, an oven, or a water heater, this is a good pick.', 4, 1),
+(10, 'TempPro Control Dial', 'dial.jpg', 'The TempPro Control Dial is a cutting-edge temperature control solution that provides precise adjustments for temperature-sensitive devices. Whether you need to set the temperature on a heater, oven, water heater, or other appliances, the TempPro Control Dial offers unmatched accuracy.', 4, 1),
+(11, 'TempMaster Thermostat', 'dial.jpg', 'The TempMaster Thermostat is a classic temperature control dial that was once a popular choice for adjusting temperatures in various appliances. With its simple and straightforward design, the TempMaster Thermostat was known for its ease of use and reliability.', 4, 0),
+(12, 'ConnectMax 60', 'connect.jpg', 'The ConnectMax 60 is a cutting-edge 60-pin connector designed for seamless connectivity in various electronic systems. With its advanced features and robust design, the ConnectMax 60 offers reliable performance and versatile connectivity options for a wide range of applications.', 5, 1),
+(13, 'RetroConnect 60', 'connect.jpg', 'The RetroConnect 60 is a classic 60-pin connector that pays homage to the golden era of electronics. With its vintage design and nostalgic appeal, the RetroConnect 60 brings a touch of old-world charm to modern electronic systems.', 5, 0),
+(14, 'SpeedConnect 60X', 'connect.jpg', 'The SpeedConnect 60X is a high-performance 60-pin connector that promises lightning-fast data transfer speeds and enhanced performance. Designed for demanding applications that require rapid data transmission, the SpeedConnect 60X offers unmatched speed and efficiency. However, it\'s not safe.', 5, 0),
+(15, 'VanaSense', 'boltedTS.jpg', 'VanaSense is an advanced sensor that leverages the exceptional properties of vanadium to provide unparalleled accuracy and reliability in measuring and monitoring specific parameters. This state-of-the-art sensor is designed to excel in a wide range of applications, offering enhanced sensitivity.', 1, 1),
+(16, 'MolySense', 'boltedTS.jpg', 'MolySense is an innovative sensor that utilizes the exceptional properties of molybdenum to provide superior performance in measuring and monitoring specific parameters. This advanced sensor is engineered to offer unparalleled accuracy, durability, and versatility in a wide range of applications.', 1, 1),
+(17, 'TechSense', 'boltedTS.jpg', 'TechSense is a cutting-edge sensor that utilizes the unique properties of technetium to provide unparalleled performance in measuring and monitoring specific parameters. This advanced sensor is engineered to offer exceptional sensitivity, stability, and reliability in a wide range of applications.', 1, 1),
+(18, 'BohriSense', 'boltedTS.jpg', 'BohriSense is a revolutionary sensor that utilizes the unique properties of bohrium, a synthetic element, to provide unparalleled performance in measuring and monitoring specific parameters. This advanced sensor is engineered to offer exceptional sensitivity, accuracy, and reliability.', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +240,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `card_text`, `category_id`, `activ
 CREATE TABLE `product_section` (
   `product_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_section`
@@ -225,7 +250,45 @@ INSERT INTO `product_section` (`product_id`, `section_id`) VALUES
 (1, 1),
 (1, 2),
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 4),
+(4, 5),
+(5, 2),
+(5, 6),
+(6, 7),
+(6, 8),
+(6, 9),
+(7, 8),
+(7, 9),
+(7, 10),
+(8, 6),
+(8, 7),
+(10, 9),
+(10, 11),
+(10, 12),
+(11, 9),
+(11, 13),
+(9, 9),
+(9, 11),
+(9, 12),
+(12, 14),
+(12, 15),
+(13, 13),
+(13, 15),
+(14, 11),
+(14, 14),
+(14, 15),
+(14, 16),
+(15, 17),
+(15, 18),
+(17, 9),
+(17, 17),
+(17, 18),
+(16, 11),
+(16, 18),
+(18, 9),
+(18, 12),
+(18, 19);
 
 -- --------------------------------------------------------
 
@@ -237,7 +300,7 @@ CREATE TABLE `section` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `body` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `section`
@@ -246,7 +309,23 @@ CREATE TABLE `section` (
 INSERT INTO `section` (`id`, `name`, `body`) VALUES
 (1, 'Benefits of Bakelite', 'Bakelite is a thermosetting plastic that has been used for decades as an excellent insulator for cables. This material is ideal for cable insulation because it is highly resistant to heat and electricity, which are two of the main factors that can cause cables to fail.\r\n\r\nBakelite is a non-conductive material, meaning that it does not conduct electricity. This property makes it ideal for insulating cables, as it prevents any unwanted electricity from escaping and causing damage or injury. Additionally, Bakelite has a high dielectric strength, which means that it can withstand high voltage levels without breaking down or becoming damaged.'),
 (2, 'Thermal Properties', 'Thermal Conductivity: 0.043 W/mK\r\nHeat Capacity: 2.5 J/gK\r\nThermal Resistance: 0.23 K/W\r\nMaximum Operating Temperature: 90°C\r\nMinimum Installation Temperature: -10°C\r\nThermal Expansion Coefficient: 18.5 x 10^-6/K'),
-(3, 'Bolt Strength ', 'Bolt strength is crucial for ensuring a secure and stable installation. That\'s why our sensors are designed with high-strength bolts that can withstand heavy loads and extreme temperatures. Our bolts are carefully selected to match the material and application requirements, ensuring a perfect fit and maximum durability. This ensures that our sensors are securely installed and can withstand the demands of even the toughest industrial environments.');
+(3, 'Bolt Strength ', 'Bolt strength is crucial for ensuring a secure and stable installation. That\'s why our sensors are designed with high-strength bolts that can withstand heavy loads and extreme temperatures. Our bolts are carefully selected to match the material and application requirements, ensuring a perfect fit and maximum durability. This ensures that our sensors are securely installed and can withstand the demands of even the toughest industrial environments.'),
+(4, 'Precision Detection', 'Equipped with highly sensitive sensors that are capable of detecting a wide range of elements, including temperature, humidity, air quality, light intensity, and motion. Its advanced detection capabilities allow for real-time monitoring and analysis of environmental conditions, providing valuable insights for optimal comfort, safety, and energy efficiency.'),
+(5, 'Versatile Applications', 'This is versatile and can be used in a wide range of applications, including residential, commercial, and industrial settings. It can be used in smart homes, offices, hotels, restaurants, retail stores, warehouses, and more. Its ability to monitor multiple environmental factors simultaneously makes it a valuable tool for a variety of industries, from HVAC management to facility management and beyond.'),
+(6, 'Ultra-Flexible Design', 'This product features an ultra-flexible design that allows it to bend and maneuver with ease, making it perfect for tight spaces where traditional cables may struggle to fit. Its high-quality materials and construction ensure that it maintains its flexibility even in extreme conditions, making it reliable and durable for long-term use.'),
+(7, 'Compact and Lightweight', 'This transmitter is incredibly small and lightweight, making it easy to carry and install in tight spaces. Its sleek and minimalist design ensures minimal footprint and maximum portability, making it ideal for on-the-go applications. It is designed to operate in challenging environments, including extreme temperatures and harsh weather conditions, making it ideal for outdoor applications.'),
+(8, 'Long Battery Life', 'This product is powered by a high-capacity rechargeable battery that provides long hours of continuous operation. It also features a low-battery indicator and a quick-charging feature, ensuring uninterrupted performance in critical situations.'),
+(9, 'Durable and Reliable', 'This product is built to withstand the rigors of professional use, the NanoWave Transmitter is constructed with high-quality materials that ensure durability and reliability. It is designed to operate in challenging environments, including extreme temperatures and harsh weather conditions, making it ideal for outdoor applications.'),
+(10, 'Surveillance and Security', ' Suitable for remote monitoring and surveillance in demanding environments, such as construction sites, industrial settings, and critical infrastructure, where robust and secure wireless transmission is required.'),
+(11, 'Sleek and Stylish', 'This product features a modern and sleek design that will complement the aesthetics of any device or environment. Its clean and minimalist look adds a touch of sophistication to your appliances, making it a functional and stylish addition to your home or workplace.'),
+(12, 'User-Friendly Design', 'This product, is designed with the end user in mind, with an ergonomic design that makes it easy to grip and turn. Its intuitive design allows for simple temperature adjustments, making it suitable for users of all ages and abilities.'),
+(13, 'Vintage Aesthetics', 'This product featured a classic and retro design that adds a nostalgic touch to appliances. Its vintage aesthetics were a popular choice in older appliances, adding a touch of charm and nostalgia to the overall appearance.'),
+(14, 'Superior Performance', 'This product is engineered to deliver superior performance even in demanding environments. It features high-quality materials, including rugged plastics, precision metal alloys, and gold-plated contacts, ensuring excellent electrical conductivity, corrosion resistance, and mechanical stability. This makes the connector ideal for use in harsh conditions, such as extreme temperatures, vibrations, and moisture.'),
+(15, 'High Pin Count', 'This product provides a generous number of pins, allowing for extensive connectivity options in electronic circuits. It offers various pin configurations, including male and female connectors, straight and right-angle pins, and surface-mount and through-hole options, enabling diverse design possibilities.'),
+(16, 'High-Bandwidth Capability', 'This product has a high-bandwidth capability, enabling it to handle large amounts of data without loss of signal quality. It is suitable for applications that require high-bandwidth data transmission, such as high-resolution video streaming, high-performance computing, and data-intensive industrial processes.'),
+(17, 'Ultra-Sensitive Detection', 'This product boasts exceptional sensitivity, allowing for precise and accurate detection of target parameters. Its high sensitivity enables it to detect even the smallest changes in the environment or substances being measured, making it ideal for applications where precision is crucial.'),
+(18, 'Cutting-Edge Technology', 'This product incorporates advanced electronics and data processing capabilities, making it a state-of-the-art sensor. It can seamlessly integrate with other systems or devices for data logging, analysis, and control, enabling seamless integration into existing processes or equipment.'),
+(19, 'Unprecedented Sensitivity', 'This product is designed to offer unmatched sensitivity, allowing for precise and accurate measurement of even the smallest changes in the environment or substances being measured. Its ultra-sensitive capabilities make it ideal for applications where detecting minute changes is critical, such as in scientific research, advanced manufacturing, and aerospace.');
 
 --
 -- Indexes for dumped tables
@@ -332,7 +411,7 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `associate`
@@ -350,13 +429,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `inquiry`
 --
 ALTER TABLE `inquiry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -368,19 +447,19 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `organisation`
 --
 ALTER TABLE `organisation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
